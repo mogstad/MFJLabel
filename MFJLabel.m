@@ -117,6 +117,9 @@ NSString * const MFJLabelDateAttributeName        = @"MFJLabelDateAttributeName"
                     range:NSMakeRange(0, [string length])];
 
     [self.originalAttributedString enumerateAttributesInRange:NSMakeRange(0, self.originalAttributedString.length) options:NSAttributedStringEnumerationReverse usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
+        if (attrs[MFJLabelLinkAttributeName] != nil) {
+            [string addAttributes:self.linkAttributes range:range];
+        }
         [string addAttributes:attrs range:range];
     }];
     return string;
